@@ -362,7 +362,7 @@ var cnItems = {
     "Unlock zombies and keep the new layer. Your mining upgrades are always visible and": "解锁僵尸并保留新层。 您的采矿升级始终可见，并且",
     "Your next boss will be at 1,000 zombie kills": "你的下一个boss将会在杀死 1,000个 僵尸后出现",
     "Gray orange": "灰橙",
-    "": "",
+    "Black  goblin": "黑色哥布林",
     "": "",
     "": "",
     "": "",
