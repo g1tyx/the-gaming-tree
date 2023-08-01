@@ -372,7 +372,7 @@ var cnItems = {
     "Gray  goblin": "灰哥布林",
     "Revenge": "复仇",
     "Second in power": "二当家",
-    "": "",
+    "Yellow": "黄色",
     "": "",
     "": "",
     "": "",
