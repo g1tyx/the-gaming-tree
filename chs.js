@@ -268,7 +268,7 @@ var cnItems = {
     "New XP upgrades, slime item drops are doubled.": "新的 经验 升级，史莱姆物品掉落加倍。",
     "Red": "红色",
     "Red Slime": "红色史莱姆",
-    "Relic challenges are optional.": "遗迹挑战是可选的。",
+    "Relic challenges are optional.": "遗物挑战是可选的。",
     "Relics": "遗物",
     "Second Hand": "二手货",
     "Slime": "史莱姆",
