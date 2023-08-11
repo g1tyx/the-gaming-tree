@@ -1970,12 +1970,40 @@ type Layers = {
             cost: Computable<Decimal>
         }
     }
+    sta: Layer<Player['sta']> & {
+        stats: {
+            '*': {
+                total(): Decimal
+                left(): Decimal
+                /** Amount of points gained on kill */
+                gain(): Decimal
+                gain_formula: string
+                regex: RegExp
+                show_row(stat: string): [['row', [
+                    ['display-text', string],
+                    'blank',
+                    ['clickable', `${string}_increase`],
+                    'blank',
+                    ['clickable', `${string}_decrease`],
+                ]], 'blank'] | undefined
+            }
+        } & {
+            [stat: string]: {
+                readonly id: string
+                name: string
+                effect(): Decimal
+                text(): string
+            }
+        }
+    }
     // Row 0
     xp: Layer<Player['xp']> & {
+        color_kill: string
         enemies: {
             '*': {
                 color_level(level?: DecimalSource): string
                 level_mult(): Decimal
+                level_exp(): Decimal
                 health_mult(): Decimal
                 health_add(): Decimal
                 exp_mult(): Decimal
@@ -2317,6 +2345,29 @@ type Layers = {
             is_loan(id?: number): boolean
         }
     }
+    a: Layer<Player['b']> & {
+        upgrades: {
+            [id: number]: Upgrade & { item: string }
+        }
+    }
+    // Alt Side
+    suc: Layer<Player['ach']> & {
+        getFailuresRows(type?: AchievementTypes): number[]
+        getFailures(type?: AchievementTypes): string[]
+        totalFailures(type?: AchievementTypes): Decimal
+        ownedFailures(type?: AchievementTypes): Decimal
+    }
+    // Special
+    star: Layer<Player['star']> & {
+        star: {
+            /** Time to hit a target, in seconds */
+            time: Computable<Decimal>
+            /** Size of the grid */
+            size: Computable<Decimal>
+            /** Amount of targets on the grid */
+            targets: Computable<Decimal>
+        }
+    }
 };
 type Temp = {
     displayThings: (string | (() => string))[]
@@ -2334,6 +2385,7 @@ type Temp = {
     clo: TempLayer & RComputed<Layers['clo']>
     cas: TempLayer & RComputed<Layers['cas']>
     mag: TempLayer & RComputed<Layers['mag']>
+    sta: TempLayer & RComputed<Layers['sta']>
     // Row 0
     xp: TempLayer & RComputed<Layers['xp']>
     m: TempLayer & RComputed<Layers['m']>
@@ -2345,6 +2397,11 @@ type Temp = {
     // Row 2
     b: TempLayer & RComputed<Layers['b']>
     s: TempLayer & RComputed<Layers['s']>
+    a: TempLayer & RComputed<Layers['a']>
+    // Alt Side
+    suc: TempLayer & RComputed<Layers['suc']>
+    // Special
+    star: TempLayer & RComputed<Layers['star']>
 };
 type Player = {
     devSpeed: string
@@ -2402,6 +2459,14 @@ type Player = {
         /** Current selected element */
         element: string
     }
+    sta: LayerData & {
+        stats: {
+            [stat: string]: {
+                /** Amount of points in a stat */
+                points: Decimal,
+            }
+        }
+    }
     // Row 0
     xp: LayerData & {
         /** Current selected enemy */
@@ -2417,8 +2482,12 @@ type Player = {
                 last_drops_times: Decimal
                 /** Current element, irrelevant if magic is locked */
                 element: string
+                /** Star-only saved name */
+                name?: string
             }
         }
+        auto_attack_current: boolean
+        auto_attack_all: boolean
     }
     m: LayerData & {
         health: Decimal
@@ -2506,8 +2575,22 @@ type Player = {
     b: LayerData & {
         /** If true, bosses are automatically started unless beaten */
         auto_start: boolean
+        final_challenges: number[]
     }
     s: LayerData & {
         short_mode: boolean,
+    }
+    a: LayerData & {}
+    // Alt Side
+    suc: LayerData & {
+        short_mode: boolean
+    }
+    // Special
+    star: LayerData & {
+        targets: number[]
+        /** Time left to hit a target, in seconds */
+        time: Decimal
+        /** If true, leaves from the star fight automatically */
+        auto_leave: boolean
     }
 };

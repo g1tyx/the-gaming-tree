@@ -1,10 +1,14 @@
 'use strict';
 
 //todo add buyMax to buyables
-//todo keep final "enemy" drop
 addLayer('lo', {
     name: 'Loot',
     image: './resources/images/swap-bag.svg',
+    nodeStyle: {
+        'background-repeat': 'no-repeat',
+        'background-position': 'center',
+        'background-size': 'contain',
+    },
     /** @returns {typeof player.lo} */
     startData() {
         return {
@@ -90,17 +94,17 @@ addLayer('lo', {
         11: {
             title: 'Lootbag',
             description() {
-                if (!hasUpgrade('s', 72)) return 'Start getting items from your kills';
+                if (!hasUpgrade('s', 22)) return 'Start getting items from your kills';
 
                 return 'Double items gain';
             },
             effect() {
-                if (!hasUpgrade('s', 72)) return D.dOne;
+                if (!hasUpgrade('s', 22)) return D.dOne;
 
                 return D.dTwo;
             },
             effectDisplay() {
-                if (!hasUpgrade('s', 72)) return '';
+                if (!hasUpgrade('s', 22)) return '';
 
                 return `${format(upgradeEffect(this.layer, this.id))}`;
             },
@@ -171,8 +175,8 @@ addLayer('lo', {
                     slime_core_shard: D(1.1).pow(x),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -200,7 +204,7 @@ addLayer('lo', {
             value() {
                 let value = D.dOne;
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -248,8 +252,8 @@ addLayer('lo', {
                     slime_core_shard: D(6 / 5).pow(x).times(3),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -280,7 +284,7 @@ addLayer('lo', {
             value() {
                 let value = D(5);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -322,8 +326,8 @@ addLayer('lo', {
                     slime_core: D(1.1).pow(x),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -351,7 +355,7 @@ addLayer('lo', {
             value() {
                 let value = D(3);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -415,8 +419,8 @@ addLayer('lo', {
                     copper_ore: D(1.25).pow(x).times(5),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 if (hasUpgrade('f', 11)) {
@@ -456,7 +460,7 @@ addLayer('lo', {
             value() {
                 let value = D(4);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -518,8 +522,8 @@ addLayer('lo', {
                     slime_core: D(1.125).pow(x).times(5),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 if (hasUpgrade('f', 11)) {
@@ -553,7 +557,7 @@ addLayer('lo', {
             value() {
                 let value = D(7);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -623,8 +627,8 @@ addLayer('lo', {
                     slime_goo: D(1.5).pow(x).times(20)
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 if (hasUpgrade('f', 11)) {
@@ -663,7 +667,7 @@ addLayer('lo', {
             value() {
                 let value = D(5);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -712,8 +716,8 @@ addLayer('lo', {
                     slime_goo: D(1.5).pow(x).times(25),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -742,7 +746,7 @@ addLayer('lo', {
             value() {
                 let value = D(4);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -790,8 +794,8 @@ addLayer('lo', {
                     pyrite_coin: D(1.23).pow(x),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -824,7 +828,7 @@ addLayer('lo', {
             value() {
                 let value = D(10);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -883,8 +887,8 @@ addLayer('lo', {
                     rusty_gear: D(1.23).pow(x),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 if (hasUpgrade('f', 11)) {
@@ -920,7 +924,7 @@ addLayer('lo', {
             value() {
                 let value = D(10);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -966,8 +970,8 @@ addLayer('lo', {
                     red_fabric: D(1.25).pow(x).times(2),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -999,7 +1003,7 @@ addLayer('lo', {
             value() {
                 let value = D(2);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -1058,8 +1062,8 @@ addLayer('lo', {
                     slime_goo: D(1.75).pow(x).times(20),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 if (hasUpgrade('f', 11)) {
@@ -1097,7 +1101,7 @@ addLayer('lo', {
             value() {
                 let value = D(13);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -1143,8 +1147,8 @@ addLayer('lo', {
                     brain: D(1.5).pow(x),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -1174,7 +1178,7 @@ addLayer('lo', {
             value() {
                 let value = D(7);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -1230,8 +1234,8 @@ addLayer('lo', {
                     coal: D(1.5).pow(x).times(5),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 if (hasUpgrade('f', 11)) {
@@ -1267,7 +1271,7 @@ addLayer('lo', {
             value() {
                 let value = D(4);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -1328,8 +1332,8 @@ addLayer('lo', {
                     tin_ore: D(1.5).pow(x).times(25),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 if (hasUpgrade('f', 11)) {
@@ -1368,7 +1372,7 @@ addLayer('lo', {
             value() {
                 let value = D(9);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -1419,8 +1423,8 @@ addLayer('lo', {
                     gold_ore: D.pow(x, 2).times(5),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 if (hasUpgrade('f', 11)) {
@@ -1455,7 +1459,7 @@ addLayer('lo', {
             value() {
                 let value = D(15);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -1500,8 +1504,8 @@ addLayer('lo', {
                     normal_log: D(1.125).pow(x).times(20),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -1532,7 +1536,7 @@ addLayer('lo', {
             value() {
                 let value = D(4);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -1579,8 +1583,8 @@ addLayer('lo', {
                     plank: D(1.5).pow(x).times(20),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -1612,7 +1616,7 @@ addLayer('lo', {
             value() {
                 let value = D(5);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -1668,8 +1672,8 @@ addLayer('lo', {
                     gold_ore: D(1.1).pow(x).div(10),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 if (hasUpgrade('f', 11)) {
@@ -1706,7 +1710,7 @@ addLayer('lo', {
             value() {
                 let value = D(7);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -1754,8 +1758,8 @@ addLayer('lo', {
                     bronze_ingot: D(1.5).pow(x).times(10),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -1785,7 +1789,7 @@ addLayer('lo', {
             value() {
                 let value = D(9);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -1832,8 +1836,8 @@ addLayer('lo', {
                     steel_ingot: D(2).pow(x).times(10),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -1863,7 +1867,7 @@ addLayer('lo', {
             value() {
                 let value = D(9);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -1913,8 +1917,8 @@ addLayer('lo', {
                     steel_ingot: D(2.25).pow(x).times(10),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -1944,7 +1948,7 @@ addLayer('lo', {
             value() {
                 let value = D(15);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -1989,8 +1993,8 @@ addLayer('lo', {
                     brain: D(1.5).pow(x).times(5),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -2021,7 +2025,7 @@ addLayer('lo', {
             value() {
                 let value = D(5);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -2076,8 +2080,8 @@ addLayer('lo', {
                     stone: D(2.5).pow(x).times(500),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 if (hasUpgrade('f', 11)) {
@@ -2113,7 +2117,7 @@ addLayer('lo', {
             value() {
                 let value = D(7);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -2157,8 +2161,8 @@ addLayer('lo', {
                     normal_log: D(1.5).pow(x).times(250),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -2189,7 +2193,7 @@ addLayer('lo', {
             value() {
                 let value = D(6);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -2234,8 +2238,8 @@ addLayer('lo', {
                     plank: D(1.3).pow(x).times(50),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -2265,7 +2269,7 @@ addLayer('lo', {
             value() {
                 let value = D(3);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -2309,8 +2313,8 @@ addLayer('lo', {
                     leaf: D(1.4).pow(x).times(25),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -2340,7 +2344,7 @@ addLayer('lo', {
             value() {
                 let value = D(4);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -2384,8 +2388,8 @@ addLayer('lo', {
                     plank: D(1.5).pow(x).times(100),
                 };
 
-                if (hasUpgrade('s', 63)) Object.entries(cost).forEach(([item, amount]) => {
-                    cost[item] = amount.times(upgradeEffect('s', 63));
+                if (hasUpgrade('s', 13)) Object.entries(cost).forEach(([item, amount]) => {
+                    cost[item] = amount.times(upgradeEffect('s', 13));
                 });
 
                 return cost;
@@ -2415,7 +2419,7 @@ addLayer('lo', {
             value() {
                 let value = D(4);
 
-                if (hasUpgrade('s', 81)) value = value.add(getBuyableAmount(this.layer, this.id));
+                if (hasUpgrade('s', 31)) value = value.add(getBuyableAmount(this.layer, this.id).times(upgradeEffect('s', 31)));
 
                 return value;
             },
@@ -2652,9 +2656,9 @@ addLayer('lo', {
             can_drop(type) {
                 if (tmp.l.deactivated) return false;
                 /** @type {[drop_sources, string]} */
-                const [from] = type.split(':');
+                const [from, sub] = type.split(':');
 
-                if (from == 'enemy') return hasUpgrade('lo', 11) || hasUpgrade('s', 72);
+                if (from == 'enemy') return hasUpgrade('lo', 11) || hasUpgrade('s', 22) || sub == 'star';
                 if (from == 'mining') return tmp.m.layerShown;
                 if (from == 'tree') return tmp.t.layerShown;
                 if (from == 'forge') return tmp.f.layerShown;
@@ -2689,7 +2693,7 @@ addLayer('lo', {
                         return sum.add(item.sources.weights[type]);
                     }, D.dZero);
             },
-            has_anvil() { return hasUpgrade('m', 33) || hasUpgrade('s', 72); },
+            has_anvil() { return hasUpgrade('m', 33) || hasUpgrade('s', 22); },
             value() {
                 return Object.values(tmp.lo.buyables).reduce((sum, buyable) => {
                     if (typeof buyable != 'object' || !('value' in buyable)) return sum;
@@ -2927,6 +2931,8 @@ addLayer('lo', {
                 chances() {
                     const chances = { 'enemy:ent': D(1 / 6), };
 
+                    if (hasChallenge('b', 42)) chances['enemy:ent'] = chances['enemy:ent'].times(2);
+
                     return chances;
                 },
             },
@@ -2947,6 +2953,8 @@ addLayer('lo', {
                 chances() {
                     const chances = { 'enemy:ent': D(1 / 512), };
 
+                    if (hasChallenge('b', 42)) chances['enemy:ent'] = chances['enemy:ent'].times(2);
+
                     return chances;
                 },
             },
@@ -2956,6 +2964,23 @@ addLayer('lo', {
                 'background-color': () => tmp.xp.enemies['ent'].color,
             },
             unlocked() { return hasChallenge('b', 21); },
+        },
+        // Star drops
+        stardust: {
+            _id: null,
+            get id() { return this._id ??= Object.keys(layers.lo.items).find(item => layers.lo.items[item] == this); },
+            grid: 902,
+            sources: {
+                _id: null,
+                get id() { return this._id ??= Object.values(layers.lo.items).find(item => item.sources == this)?.id; },
+                other() { if (hasChallenge('b', 22)) return ['enemy:star']; },
+            },
+            name: 'Stardust',
+            style: {
+                'background-image': `url('./resources/images/powder.svg')`,
+                'background-color'() { return tmp.xp.enemies.star.color; },
+            },
+            unlocked() { return hasChallenge('b', 22); },
         },
         // Mining
         stone: {
@@ -3325,7 +3350,14 @@ addLayer('lo', {
                         'tree:birch': D(1),
                     };
 
-                    if (hasChallenge('b', 21)) chances['enemy:ent'] = D(1 / 49);
+                    if (hasChallenge('b', 21)) {
+                        chances['enemy:ent'] = D(1 / 49);
+
+                        if (hasChallenge('b', 42)) chances['enemy:ent'] = chances['enemy:ent'].times(2);
+                    }
+                    if (hasChallenge('b', 42)) {
+                        chances['tree:baobab'] = D(1);
+                    }
 
                     return chances;
                 },
@@ -3412,8 +3444,11 @@ addLayer('lo', {
     doReset(layer) {
         if (layers[layer].row <= this.row) return;
 
-        const keep = ['shown'];
+        const keep = ['shown'],
+            stardust = D(player.lo.items.stardust.amount);
 
         layerDataReset(this.layer, keep);
+
+        player.lo.items.stardust.amount = stardust;
     },
 });

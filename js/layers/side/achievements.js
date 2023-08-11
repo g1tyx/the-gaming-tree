@@ -1,9 +1,9 @@
 'use strict';
 
-//todo alternator achievements (19X, vR0.6)
 addLayer('ach', {
     name: 'Achievements',
     symbol: '⭐',
+    /** @returns {Player['ach']} */
     startData() {
         return {
             unlocked: true,
@@ -15,7 +15,7 @@ addLayer('ach', {
     resource: 'achievements',
     type: 'none',
     position: 0,
-    layerShown: true,
+    layerShown() { return !hasUpgrade('a', 14); },
     tabFormat: {
         'Achievements': {
             content: [
@@ -447,7 +447,7 @@ addLayer('ach', {
         132: {
             name: 'Scammer',
             tooltip: 'Start a MLM',
-            done() { return hasUpgrade('s', 62); },
+            done() { return hasUpgrade('s', 12); },
             onComplete() { if (tmp.ach.layerShown) doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Achievement Unlocked!", 3, tmp.s.color); },
             style() {
                 let s = {};
@@ -459,7 +459,7 @@ addLayer('ach', {
         133: {
             name: 'Keep on crafting',
             tooltip: 'Buy crafting tools',
-            done() { return hasUpgrade('s', 72); },
+            done() { return hasUpgrade('s', 22); },
             onComplete() { if (tmp.ach.layerShown) doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Achievement Unlocked!", 3, tmp.s.color); },
             style() {
                 let s = {};
@@ -471,7 +471,7 @@ addLayer('ach', {
         134: {
             name: 'Trickled Down',
             tooltip: 'Get your cheaper levels',
-            done() { return hasUpgrade('s', 82); },
+            done() { return hasUpgrade('s', 32); },
             onComplete() { if (tmp.ach.layerShown) doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Achievement Unlocked!", 3, tmp.s.color); },
             style() {
                 let s = {};
@@ -483,7 +483,7 @@ addLayer('ach', {
         135: {
             name: 'More Investments',
             tooltip: 'Get the strongest investment',
-            done() { return !inChallenge('b', 12) && !inChallenge('b', 32) && hasUpgrade('s', 51); },
+            done() { return !inChallenge('b', 12) && !inChallenge('b', 32) && hasUpgrade('s', 81); },
             onComplete() { if (tmp.ach.layerShown) doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Achievement Unlocked!", 3, tmp.s.color); },
             style() {
                 let s = {};
@@ -672,6 +672,147 @@ addLayer('ach', {
             },
             unlocked() { return tmp.f.layerShown; },
         },
+        191: {
+            name: 'One Less Star',
+            tooltip: 'Kill a star',
+            done() { return player.xp.enemies.star.kills.gte(1); },
+            onComplete() { if (tmp.ach.layerShown) doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Achievement Unlocked!", 3, tmp.xp.color); },
+            style() {
+                let s = {};
+                if (hasAchievement(this.layer, this.id)) s['background-color'] = tmp.xp.color;
+                return s;
+            },
+            unlocked() { return hasChallenge('b', 22); },
+        },
+        192: {
+            name: 'Uncaught TypeError: player.xp is undefined',
+            tooltip: 'No more murder',
+            done() { return false; },
+            onComplete() { if (tmp.ach.layerShown) doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Achievement Unlocked!", 3, tmp.a.color); },
+            style() {
+                let s = {};
+                if (hasAchievement(this.layer, this.id)) {
+                    s['background-image'] = tmp.a.nodeStyle['background-image'];
+                    s['background-origin'] = tmp.a.nodeStyle['background-origin'];
+                }
+                return s;
+            },
+            unlocked() { return hasChallenge('b', 22); },
+        },
+        193: {
+            name: 'Uncaught TypeError: player.m is null',
+            tooltip: 'Stop mining',
+            done() { return false; },
+            onComplete() { if (tmp.ach.layerShown) doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Achievement Unlocked!", 3, tmp.a.color); },
+            style() {
+                let s = {};
+                if (hasAchievement(this.layer, this.id)) {
+                    s['background-image'] = tmp.a.nodeStyle['background-image'];
+                    s['background-origin'] = tmp.a.nodeStyle['background-origin'];
+                }
+                return s;
+            },
+            unlocked() { return hasChallenge('b', 22); },
+        },
+        194: {
+            name: 'Uncaught TypeError: player.t is unset',
+            tooltip: 'Lose your trees',
+            done() { return false; },
+            onComplete() { if (tmp.ach.layerShown) doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Achievement Unlocked!", 3, tmp.a.color); },
+            style() {
+                let s = {};
+                if (hasAchievement(this.layer, this.id)) {
+                    s['background-image'] = tmp.a.nodeStyle['background-image'];
+                    s['background-origin'] = tmp.a.nodeStyle['background-origin'];
+                }
+                return s;
+            },
+            unlocked() { return hasChallenge('b', 22); },
+        },
+        195: {
+            name: 'Goodbye',
+            tooltip: 'Lose your achievements',
+            done() { return false; },
+            onComplete() { doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Achievement Unlocked!", 3, tmp.ach.color); },
+            style() {
+                let s = {};
+                if (hasAchievement(this.layer, this.id)) s['background-color'] = tmp.ach.color;
+                return s;
+            },
+            unlocked() { return hasChallenge('b', 22); },
+        },
+        201: {
+            name: 'Cascade',
+            tooltip: 'Enter the final challenge',
+            done() { return inChallenge('b', 71); },
+            onComplete() { doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Achievement Unlocked!", 3, tmp.ach.color); },
+            style() {
+                let s = {};
+                if (hasAchievement(this.layer, this.id)) s['background-color'] = '#FFFFFF';
+                return s;
+            },
+            unlocked() { return hasChallenge('b', 22); },
+        },
+        202: {
+            name: 'Calm, at last',
+            tooltip: 'Defeat the Slime King once more',
+            done() { return inChallenge('b', 71) && !inChallenge('b', 11); },
+            onComplete() { doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Achievement Unlocked!", 3, tmp.ach.color); },
+            style() {
+                let s = {};
+                if (hasAchievement(this.layer, this.id)) s['background-color'] = '#FFFFFF';
+                return s;
+            },
+            unlocked() { return hasChallenge('b', 22); },
+        },
+        203: {
+            name: 'Generous',
+            tooltip: 'Defeat the Globlin CEO once more',
+            done() { return inChallenge('b', 71) && !inChallenge('b', 12); },
+            onComplete() { doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Achievement Unlocked!", 3, tmp.ach.color); },
+            style() {
+                let s = {};
+                if (hasAchievement(this.layer, this.id)) s['background-color'] = '#FFFFFF';
+                return s;
+            },
+            unlocked() { return hasChallenge('b', 22); },
+        },
+        204: {
+            name: 'Vigor',
+            tooltip: 'Defeat the Eternal Lich once more',
+            done() { return inChallenge('b', 71) && !inChallenge('b', 21); },
+            onComplete() { doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Achievement Unlocked!", 3, tmp.ach.color); },
+            style() {
+                let s = {};
+                if (hasAchievement(this.layer, this.id)) s['background-color'] = '#FFFFFF';
+                return s;
+            },
+            unlocked() { return hasChallenge('b', 22); },
+        },
+        205: {
+            name: 'Temperate',
+            tooltip: 'Destroy the Kudzu once more',
+            done() { return inChallenge('b', 71) && !inChallenge('b', 22); },
+            onComplete() { doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Achievement Unlocked!", 3, tmp.ach.color); },
+            style() {
+                let s = {};
+                if (hasAchievement(this.layer, this.id)) s['background-color'] = '#FFFFFF';
+                return s;
+            },
+            unlocked() { return hasChallenge('b', 22); },
+        },
+        206: {
+            name: 'The end of the world',
+            tooltip: 'Finish the final challenge',
+            done() { return hasChallenge('b', 71); },
+            onComplete() { doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Achievement Unlocked!", 3, tmp.ach.color); },
+            style() {
+                let s = {};
+                if (hasAchievement(this.layer, this.id)) s['background-color'] = '#FFFFFF';
+                return s;
+            },
+            unlocked() { return [201, 202, 203, 204].every(id => hasAchievement('ach', id)); },
+        },
         //#endregion Normal achievements
         //#region Bonus achievements
         81: {
@@ -723,7 +864,7 @@ addLayer('ach', {
             tooltip() {
                 if (!hasChallenge('b', 22)) return 'Destroy ???';
 
-                return 'Defeat the world tree';
+                return 'Destroy the world tree';
             },
             done() { return hasChallenge('b', 42); },
             onComplete() { if (tmp.ach.layerShown) doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Bonus Achievement Unlocked!", 3, 'rgb(0,127,255)'); },
@@ -799,7 +940,7 @@ addLayer('ach', {
             tooltip() {
                 if (!hasChallenge('b', 42)) return 'Unlock ???';
 
-                return 'Unlock Attributes';
+                return 'Unlock Stats';
             },
             done() { return hasChallenge('b', 62); },
             onComplete() { if (tmp.ach.layerShown) doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Bonus Achievement Unlocked!", 3, 'rgb(0,127,255)'); },
@@ -885,7 +1026,7 @@ addLayer('ach', {
         142: {
             name: 'Direct',
             tooltip: 'Pay off only the boss debt/loan',
-            done() { return player.s.upgrades.filter(layers.s.investloans.is_loan) == 1 && hasUpgrade('s', 51) && (inChallenge('b', 12) || inChallenge('b', 32)); },
+            done() { return player.s.upgrades.filter(layers.s.investloans.is_loan) == 1 && hasUpgrade('s', 81) && (inChallenge('b', 12) || inChallenge('b', 32)); },
             onComplete() { if (tmp.ach.layerShown) doPopup("achievement", tmp[this.layer].achievements[this.id].name, "Secret Achievement Unlocked!", 3, 'rgb(127,0,255)'); },
             style: { 'background-color': 'rgb(127,0,255)' },
             unlocked() { return hasAchievement(this.layer, this.id); },
@@ -952,7 +1093,7 @@ addLayer('ach', {
         switch (type) {
             case 'normal':
             default:
-                rows = [1, 3, 5, 12, 7, 11, 15, 13, 16, 17];
+                rows = [1, 3, 5, 12, 7, 11, 15, 13, 16, 17, 19, 20];
                 break;
             case 'bonus':
                 rows = [8, 9];

@@ -441,7 +441,7 @@ addLayer('m', {
                 if (!shiftDown) {
                     let text = '';
 
-                    if (!hasUpgrade('s', 72)) text += 'Allow crafting items with metals<br>';
+                    if (!hasUpgrade('s', 22)) text += 'Allow crafting items with metals<br>';
 
                     text += 'Tin boosts max ore health';
 
@@ -450,12 +450,12 @@ addLayer('m', {
 
                 let formula = '5√(tin ore)';
 
-                if (hasUpgrade('s', 72)) formula = '3√(tin ore)';
+                if (hasUpgrade('s', 22)) formula = '3√(tin ore)';
 
                 return `Formula: ${formula}`;
             },
             effect() {
-                if (!hasUpgrade('s', 72)) return D.root(player.lo.items.tin_ore.amount, 5);
+                if (!hasUpgrade('s', 22)) return D.root(player.lo.items.tin_ore.amount, 5);
 
                 return D.root(player.lo.items.tin_ore.amount, 3);
             },
@@ -728,6 +728,8 @@ addLayer('m', {
 
             regen = regen.add(tmp.l.skills.mining.effect);
 
+            if (hasChallenge('b', 62) && !inChallenge('b', 62)) regen = regen.add(tmp.sta.stats.regeneration.effect);
+
             if (hasUpgrade('m', 23)) regen = regen.times(upgradeEffect('m', 23));
 
             regen = regen.times(buyableEffect('lo', 82).regen);
@@ -758,7 +760,7 @@ addLayer('m', {
 
             chance = chance.times(tmp.mag.elements[player.mag.element].effects.mining?.chance_multiplier ?? 1);
 
-            if (hasUpgrade('s', 61)) chance = chance.root(upgradeEffect('s', 61));
+            if (hasUpgrade('s', 11)) chance = chance.root(upgradeEffect('s', 11));
             else chance = chance.min(1);
 
             return chance;
@@ -780,8 +782,8 @@ addLayer('m', {
             if (hasUpgrade('m', 32)) {
                 let stone = drops.reduce((sum, [, amount]) => D.add(sum, amount), D.dZero);
 
-                if (inChallenge('b', 12) && !hasUpgrade('s', 31)) stone = stone.div(D.add(player.lo.items.stone.amount, 10).log10());
-                if (hasUpgrade('s', 31)) stone = stone.times(upgradeEffect('s', 31));
+                if (inChallenge('b', 12) && !hasUpgrade('s', 61)) stone = stone.div(D.add(player.lo.items.stone.amount, 10).log10());
+                if (hasUpgrade('s', 61)) stone = stone.times(upgradeEffect('s', 61));
 
                 const entry = drops.find(([item]) => item == 'stone') ?? false;
                 if (entry) entry[1] = stone;

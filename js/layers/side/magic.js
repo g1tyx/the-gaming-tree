@@ -147,10 +147,13 @@ addLayer('mag', {
                 if (inChallenge('b', 61)) return this.random();
 
                 switch (enemy) {
+                    case 'player':
+                    case 'star':
                     default: return 'none';
                     case 'slime': return 'water';
                     case 'goblin': return 'air';
                     case 'zombie': return 'fire';
+                    case 'world_tree':
                     case 'ent': return 'earth';
                     case 'amalgam': return this.random();
                 }
